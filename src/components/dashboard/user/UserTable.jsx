@@ -1,4 +1,4 @@
-import { Table } from "@heroui/react";
+import { Button, Table } from "@heroui/react";
 
 export function UserTable({ hiring }) {
   return (
@@ -11,6 +11,7 @@ export function UserTable({ hiring }) {
             <Table.Column>Status</Table.Column>
             <Table.Column>payment</Table.Column>
             <Table.Column>Date</Table.Column>
+            <Table.Column>pay</Table.Column>
           </Table.Header>
           <Table.Body>
             <Table.Row>
@@ -21,6 +22,18 @@ export function UserTable({ hiring }) {
               <Table.Cell>
                 {" "}
                 Hire Date: {new Date(hiring.hireDate).toLocaleDateString()}
+              </Table.Cell>
+              <Table.Cell>
+                {hiring.status === "accepted" &&
+                hiring.paymentStatus === "unpaid" ? (
+                  <Button color="success">Pay Now</Button>
+                ) : hiring.paymentStatus === "paid" ? (
+                  <Button color="success" isDisabled>
+                    Paid
+                  </Button>
+                ) : (
+                  "-"
+                )}
               </Table.Cell>
             </Table.Row>
           </Table.Body>
