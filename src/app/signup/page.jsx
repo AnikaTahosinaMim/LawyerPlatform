@@ -1,5 +1,5 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -36,7 +36,7 @@ export default function SignUpPage() {
       ...user,
       plan: "free",
     });
-    router.push("/")
+    router.push("/");
   };
 
   const handleGoogleLogin = async () => {

@@ -5,7 +5,7 @@ import Hero from "./homepage/Hero";
 import LawyerSection from "./homepage/LawyerSection";
 
 const Homepage = async () => {
-  const res = await fetch(`${process.env.SERVER_URL}/lawyerData?limit=6`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/lawyerData?limit=6`, {
     cache: "no-store",
   });
 

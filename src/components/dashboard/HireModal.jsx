@@ -9,56 +9,79 @@ const HireDialog = ({ lawyer }) => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const handleConfirm = () => {
-    if (!session) {
-      router.push("/signin");
-      return;
-    }
+const handleConfirm = async () => {
+  if (!session) {
+    router.push("/signin");
+    return;
+  }
 
-    if (session?.user?.role !== "user") {
-      toast.error("Only users can hire lawyers.");
-      return;
-    }
+  if (session.user.role !== "user") {
+    toast.error("Only users can hire lawyers.");
+    return;
+  }
 
-    toast.success("Hiring request sent.");
-    console.log("POST API CALL");
+  const hiringData = {
+    lawyerId: lawyer._id,
+    lawyerName: lawyer.name,
+    lawyerEmail: lawyer.email,
+
+    userName: session.user.name,
+    userEmail: session.user.email,
+
+    consultationFee: lawyer.consultationFee,
+    hireDate: new Date(),
   };
+
+  try {
+    const res = await fetch("http://localhost:5000/hirings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(hiringData),
+    });
+
+    const data = await res.json();
+
+    if (data.insertedId) {
+      toast.success("Hiring request sent successfully!");
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error("Something went wrong!");
+  }
+  if (!res.ok) {
+  const error = await res.json();
+  toast.error(error.message);
+  return;
+}
+};
 
   return (
     <AlertDialog>
       {/* এই একটাই Hire Button থাকবে */}
-      <Button color="primary">
-        Hire Me
-      </Button>
+      <Button color="primary">Hire Me</Button>
 
       <AlertDialog.Backdrop>
         <AlertDialog.Container>
           <AlertDialog.Dialog className="sm:max-w-[450px]">
-
             <AlertDialog.CloseTrigger />
 
             <AlertDialog.Header>
-              <Avatar
-                src={lawyer.photo}
-                className="w-16 h-16"
-              />
+              <Avatar src={lawyer.photo} className="w-16 h-16" />
 
-              <AlertDialog.Heading>
-                Hire {lawyer.name}?
-              </AlertDialog.Heading>
+              <AlertDialog.Heading>Hire {lawyer.name}?</AlertDialog.Heading>
             </AlertDialog.Header>
 
             <AlertDialog.Body>
               <div className="space-y-2">
-
                 <p>
-                  <strong>Specialization:</strong>{" "}
-                  {lawyer.specialization}
+                  <strong>Specialization:</strong> {lawyer.specialization}
                 </p>
 
                 <p>
-                  <strong>Consultation Fee:</strong> ৳
-                  {lawyer.consultationFee}/hour
+                  <strong>Consultation Fee:</strong> ৳{lawyer.consultationFee}
+                  /hour
                 </p>
 
                 <p>
@@ -68,29 +91,18 @@ const HireDialog = ({ lawyer }) => {
                 <p className="pt-3">
                   Are you sure you want to send a hiring request?
                 </p>
-
               </div>
             </AlertDialog.Body>
 
             <AlertDialog.Footer>
-
-              <Button
-                slot="close"
-                variant="secondary"
-              >
+              <Button slot="close" variant="secondary">
                 Cancel
               </Button>
 
-              <Button
-                slot="close"
-                color="primary"
-                onPress={handleConfirm}
-              >
+              <Button slot="close" color="primary" onPress={handleConfirm}>
                 Confirm Hire
               </Button>
-
             </AlertDialog.Footer>
-
           </AlertDialog.Dialog>
         </AlertDialog.Container>
       </AlertDialog.Backdrop>

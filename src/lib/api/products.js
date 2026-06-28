@@ -1,6 +1,6 @@
 // import { authClient } from "../auth-client";
 
-// const baseURL = process.env.NEXT_PUBLIC_SERVER_URL;
+// const baseURL = process.env.NEXT_PUBLIC_NEXT_PUBLIC_SERVER_URL;
 // export const addProducts = async (products) => {
 //   const { data: token } = await authClient.token();
 //   console.log(token.token)

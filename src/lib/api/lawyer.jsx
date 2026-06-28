@@ -1,4 +1,4 @@
-const baseUrl = process.env.SERVER_URL;
+const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 export const LawyersData = async () => {
   const res = await fetch(`${baseUrl}/lawyerData`);
   const data = await res.json();

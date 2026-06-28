@@ -27,7 +27,7 @@ export default async function DashboardSidebar() {
       {
         icon: FaUser,
         label: "hiring-history ",
-        link: "/dashboard/user/hiring-history",
+        link: "/dashboard/user/my-hiring",
       },
       {
         icon: FaUser,
