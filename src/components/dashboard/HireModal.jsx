@@ -33,7 +33,7 @@ const handleConfirm = async () => {
   };
 
   try {
-    const res = await fetch("http://localhost:5000/hirings", {
+    const res = await fetch("https://lawyerplatform.vercel.app/hirings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

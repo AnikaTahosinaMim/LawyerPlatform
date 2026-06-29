@@ -12,7 +12,7 @@ export default function PaymentSuccess() {
 
     if (!hiringId) return;
 
-    fetch(`http://localhost:5000/hirings/payment/${hiringId}`, {
+    fetch(`https://lawyerplatform.vercel.app/hirings/payment/${hiringId}`, {
       method: "PATCH",
     }).then(() => {
       setTimeout(() => {
