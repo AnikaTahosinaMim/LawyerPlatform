@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "@/lib/auth-client";
-import { getLawyerHirings } from "@/lib/api/hiring";
+// import { getLawyerHirings } from "@/lib/api/hiring";
 import HiringTable from "@/components/lawyers/Hiring-histry";
+import { getLawyerHirings } from "@/lib/api/hiring";
 // import HiringTable from "@/components/lawyers/HiringTable";
 
 const LawyerHiringRequests = () => {

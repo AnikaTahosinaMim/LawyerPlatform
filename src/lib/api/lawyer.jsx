@@ -1,8 +1,12 @@
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-export const LawyersData = async () => {
-  const res = await fetch(`${baseUrl}/lawyerData`);
-  const data = await res.json();
-  return data;
+export const LawyersData = async (params = {}) => {
+  const query = new URLSearchParams(params).toString();
+
+  const res = await fetch(`${baseUrl}/lawyerData?${query}`, {
+    cache: "no-store",
+  });
+
+  return res.json();
 };
 
 // details pages:

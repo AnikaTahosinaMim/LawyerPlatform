@@ -111,7 +111,6 @@ export const getLawyerProfile = async (email) => {
     return null;
   }
 };
-
 export const updateLawyerProfile = async (id, data) => {
   const res = await fetch(`${baseUrl}/lawyer/${id}`, {
     method: "PATCH",

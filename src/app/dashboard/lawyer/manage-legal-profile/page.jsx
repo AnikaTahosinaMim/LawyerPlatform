@@ -37,7 +37,7 @@ export default function ManageLegalProfile() {
     try {
       setLoading(true);
 
-      let photo = lawyer.photo;
+      let photo = lawyer.photo  || "/avatar.png";
 
       if (photoFile) {
         photo = await imageUpload(photoFile);
@@ -72,7 +72,7 @@ export default function ManageLegalProfile() {
       <form onSubmit={handleSubmit} className="space-y-5">
         <Input
           label="Lawyer Name"
-          value={lawyer.name || ""}
+          value={lawyer.name || "name"}
           onChange={(e) =>
             setLawyer({
               ...lawyer,
@@ -141,7 +141,7 @@ export default function ManageLegalProfile() {
           <p className="mb-2 font-medium">Current Photo</p>
 
           <img
-            src={lawyer.photo}
+            src={lawyer.photo  || "/avatar.png"}
             className="w-32 h-32 rounded-xl object-cover"
             alt=""
           />

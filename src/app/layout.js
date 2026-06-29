@@ -1,10 +1,11 @@
-import dns from "node:dns"
-dns.setServers(['1.1.1.1', '1.0.0.1']);
+import dns from "node:dns";
+dns.setServers(["1.1.1.1", "1.0.0.1"]);
 
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,9 +23,10 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main className="mx-auto px-2 min-h-screen">
           {children}
+          <Toaster position="top-right" />
         </main>
 
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
