@@ -1,6 +1,14 @@
+import { createCheckoutSession } from "@/lib/api/hiring";
 import { Button, Table } from "@heroui/react";
 
 export function UserTable({ hiring }) {
+  const handlePayment = async () => {
+    const data = await createCheckoutSession(hiring);
+
+    if (data.url) {
+      window.location.href = data.url;
+    }
+  };
   return (
     <Table>
       <Table.ScrollContainer>
@@ -26,7 +34,9 @@ export function UserTable({ hiring }) {
               <Table.Cell>
                 {hiring.status === "accepted" &&
                 hiring.paymentStatus === "unpaid" ? (
-                  <Button color="success">Pay Now</Button>
+                  <Button color="success" onPress={handlePayment}>
+                    Pay Now
+                  </Button>
                 ) : hiring.paymentStatus === "paid" ? (
                   <Button color="success" isDisabled>
                     Paid
