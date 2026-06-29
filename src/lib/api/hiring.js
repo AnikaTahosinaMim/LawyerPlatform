@@ -37,6 +37,13 @@ export const createCheckoutSession = async (hiring) => {
 
   return res.json();
 };
+export const getTransactions = async () => {
+  const res = await fetch(`${baseUrl}/transactions`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
 // admin
 
 export const getUsers = async () => {
@@ -62,6 +69,56 @@ export const changeRole = async (id, role) => {
 export const deleteUser = async (id) => {
   const res = await fetch(`${baseUrl}/user/${id}`, {
     method: "DELETE",
+  });
+
+  return res.json();
+};
+export const getAnalytics = async () => {
+  const res = await fetch(`${baseUrl}/analytics`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
+export const getUserProfile = async (email) => {
+  const res = await fetch(`${baseUrl}/user/${email}`);
+
+  return res.json();
+};
+
+export const updateUserProfile = async (email, data) => {
+  const res = await fetch(`${baseUrl}/user/${email}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return res.json();
+};
+export const getLawyerProfile = async (email) => {
+  try {
+    const res = await fetch(`${baseUrl}/lawyer/${email}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) throw new Error("Network response failed");
+
+    return await res.json();
+  } catch (err) {
+    console.error("Fetch error:", err);
+    return null;
+  }
+};
+
+export const updateLawyerProfile = async (id, data) => {
+  const res = await fetch(`${baseUrl}/lawyer/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
 
   return res.json();
