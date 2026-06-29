@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+
 const Hero = () => {
   return (
     <section className="relative overflow-hidden py-32">
@@ -43,6 +44,8 @@ const Hero = () => {
         </motion.button>
 
       </div>
+      
+
 
     </section>
   );

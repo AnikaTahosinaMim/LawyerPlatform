@@ -24,6 +24,7 @@ const item = {
 };
 
 const LawyerSection = ({ lawyers }) => {
+  console.log(lawyers);
   return (
     <section className="max-w-7xl mx-auto py-24 px-6">
       <h2 className="text-5xl font-bold mb-14">Top Rated Lawyers</h2>

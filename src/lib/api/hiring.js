@@ -122,3 +122,10 @@ export const updateLawyerProfile = async (id, data) => {
 
   return res.json();
 };
+export const getTopLawyers = async () => {
+  const res = await fetch(`${baseUrl}/top-lawyers`, {
+    cache: "no-store",
+  });
+
+  return res.json();
+};
