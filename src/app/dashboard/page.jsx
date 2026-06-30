@@ -8,6 +8,7 @@ const DashboardPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+  console.log(session,"sesession,,,,")
 
   const user = await getUserProfile(session.user.email);
 
