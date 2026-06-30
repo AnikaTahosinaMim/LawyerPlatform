@@ -2,22 +2,24 @@
 
 import { useEffect, useState } from "react";
 import { getTransactions } from "@/lib/api/hiring";
-import TransactionsTable from "@/components/dashboard/admin/TransactionsTable";
 
 export default function AllTransactions() {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     getTransactions().then((data) => {
+      console.log("DATA:", data);
       setTransactions(data);
     });
   }, []);
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-6">All Transactions</h2>
+      <h1>Transactions</h1>
 
-      <TransactionsTable transactions={transactions} />
+      <p>Total = {transactions.length}</p>
+
+      <pre>{JSON.stringify(transactions, null, 2)}</pre>
     </div>
   );
 }
