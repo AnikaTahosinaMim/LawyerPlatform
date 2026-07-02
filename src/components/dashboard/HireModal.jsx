@@ -24,10 +24,8 @@ const handleConfirm = async () => {
     lawyerId: lawyer._id,
     lawyerName: lawyer.name,
     lawyerEmail: lawyer.email,
-
     userName: session.user.name,
     userEmail: session.user.email,
-
     consultationFee: lawyer.consultationFee,
     hireDate: new Date(),
   };
@@ -43,23 +41,23 @@ const handleConfirm = async () => {
 
     const data = await res.json();
 
-    if (data.insertedId) {
-      toast.success("Hiring request sent successfully!");
+    console.log("Status:", res.status);
+    console.log("Response:", data);
+
+    if (!res.ok) {
+      toast.error(data.message || "Something went wrong!");
+      return;
     }
+
+    toast.success("Hiring request sent successfully!");
   } catch (error) {
-    console.error(error);
-    toast.error("Something went wrong!");
+    console.error("Hire Error:", error);
+    toast.error("Network Error!");
   }
-  if (!res.ok) {
-  const error = await res.json();
-  toast.error(error.message);
-  return;
-}
 };
 
   return (
     <AlertDialog>
-      {/* এই একটাই Hire Button থাকবে */}
       <Button color="primary">Hire Me</Button>
 
       <AlertDialog.Backdrop>
