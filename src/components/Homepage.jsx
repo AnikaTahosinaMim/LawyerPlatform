@@ -12,7 +12,7 @@ const Homepage = async () => {
     cache: "no-store",
   });
 
-  const lawyers = await res.json();
+  const lawyers = await res.json() || "no data";
 
   return (
     <main className="bg-slate-950 text-white min-h-screen">

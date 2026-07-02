@@ -11,7 +11,7 @@ export const getLawyerHirings = async (email) => {
   const res = await fetch(`${baseUrl}/hirings/lawyer/${email}`, {
     cache: "no-store",
   });
-
+console.log("BASE URL:", baseUrl);
   return res.json();
 };
 export const updateHiringStatus = async (id, status) => {
